@@ -6,7 +6,7 @@ import unsupportedMessage from '../db/unsupportedMessage';
 import { controllers, passport as passportConfig } from '../db';
 
 const usersController = controllers && controllers.users;
-const topicsController = controllers && controllers.topics;
+const favoritesController = controllers && controllers.favorites;
 
 export default (app) => {
   // user routes
@@ -44,12 +44,12 @@ export default (app) => {
   }
 
   // topic routes
-  if (topicsController) {
-    app.get('/topic', topicsController.all);
-    app.post('/topic/:id', topicsController.add);
-    app.put('/topic/:id', topicsController.update);
-    app.delete('/topic/:id', topicsController.remove);
+  if (favoritesController) {
+    app.get('/favorite', favoritesController.all);
+    app.post('/favorite/:id', favoritesController.add);
+    app.put('/favorite/:id', favoritesController.update);
+    app.delete('/favorite/:id', favoritesController.remove);
   } else {
-    console.warn(unsupportedMessage('topics routes'));
+    console.warn(unsupportedMessage('favorite routes'));
   }
 };
