@@ -2,12 +2,12 @@
 @import '../common/colors';
 @import '../common/layout';
 
-.topic-item {
+.favorite-item {
   display: flex;
   justify-content: space-between;
 }
 
-.topic {
+.favorite {
   @apply --flexNotMoreThan200;
   font-size: var(--fontMedium);
 }
@@ -20,14 +20,6 @@
   border: none;
   margin: 0 28px;
   color: #fff;
-}
-
-.increment {
-  background-color: var(--colorSalem);
-}
-
-.decrement {
-  background-color: var(--colorDodgerBlue);
 }
 
 .destroy {

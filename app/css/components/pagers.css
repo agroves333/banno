@@ -1,0 +1,14 @@
+.info {
+    font-size: 12px;
+    color: #777;
+    float: right;
+    line-height: 18px;
+}
+
+.query {
+    color: #000;
+}
+
+.resultsType {
+    margin-top: 30px;
+}

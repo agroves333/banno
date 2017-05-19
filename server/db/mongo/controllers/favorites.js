@@ -5,13 +5,13 @@ import Favorite from '../models/favorites';
  * List favorites
  */
 export function all(req, res) {
-  Favorite.find({}).exec((err, topics) => {
+  Favorite.find({}).exec((err, favorites) => {
     if (err) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');
     }
 
-    return res.json(topics);
+    return res.json(favorites);
   });
 }
 

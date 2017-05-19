@@ -1,0 +1,12 @@
+.search {
+    margin-top: 20px;
+
+    & input {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+}
+
+div.buttonColumn {
+    padding-left: 0 !important;
+}

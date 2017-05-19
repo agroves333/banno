@@ -1,0 +1,33 @@
+span.close {
+    position: fixed;
+    top: -40px;
+    right: 0;
+    width: 58px;
+    height: 40px;
+    z-index: 2000;
+    color: white;
+    font-size: 33px;
+}
+
+:global {
+    div.modal-dialog, div.modal-content, div.modal-header, div.modal-header {
+        background-color: rgba(0,0,0,0);
+        box-shadow: none;
+        border: none;
+    }
+
+    div.modal-dialog .close {
+        opacity: 1;
+        background: rgba(0,0,0,0);
+        color: white;
+        font-size: 36px;
+    }
+
+    div.modal-backdrop.in {
+        opacity: 0.8;
+    }
+
+    div.modal-dialog {
+        margin-top: 60px;
+    }
+}

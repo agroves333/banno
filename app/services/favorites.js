@@ -4,22 +4,22 @@ import createRestApiClient from '../utils/createRestApiClient';
 export default () => {
   const client = createRestApiClient().withConfig({ baseURL: apiEndpoint });
   return {
-    getTopics: () => client.request({
+    getFavorites: () => client.request({
       method: 'GET',
-      url: '/topic'
+      url: '/favorite'
     }),
-    deleteTopic: ({ id }) => client.request({
+    deleteFavorite: ({ id }) => client.request({
       method: 'DELETE',
-      url: `/topic/${id}`
+      url: `/favorite/${id}`
     }),
-    updateTopic: ({ id, data }) => client.request({
+    updateFavorite: ({ id, data }) => client.request({
       method: 'PUT',
-      url: `/topic/${id}`,
+      url: `/favorite/${id}`,
       data
     }),
-    createTopic: ({ id, data }) => client.request({
+    createFavorite: ({ id, data }) => client.request({
       method: 'POST',
-      url: `/topic/${id}`,
+      url: `/favorite/${id}`,
       data
     })
   };

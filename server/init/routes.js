@@ -43,7 +43,18 @@ export default (app) => {
     );
   }
 
-  // topic routes
+  app.get('/api/suggest', (req, res) => {
+    request.get('http://suggestqueries.google.com/complete/search', {
+      qs: {
+        output: 'toolbar',
+        hl: 'en',
+        q: req.query.query,
+        client: 'firefox'
+      }
+    }).pipe(res);
+  });
+
+  // favorites routes
   if (favoritesController) {
     app.get('/favorite', favoritesController.all);
     app.post('/favorite/:id', favoritesController.add);

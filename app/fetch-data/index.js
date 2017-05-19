@@ -1,2 +1,2 @@
-export { default as fetchVoteData } from './fetchVoteData';
+export { default as fetchFavorites } from './fetchFavorites.js';
 

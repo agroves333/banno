@@ -1,0 +1,10 @@
+.lg {
+    height: 46px;
+}
+
+.input {
+    padding-right: 30px !important;
+    &::-ms-clear {
+        display: none;
+    }
+}

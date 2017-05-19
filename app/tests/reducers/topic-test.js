@@ -40,7 +40,7 @@ describe('Topics reducer', () => {
     ).toEqual(
       {
         topics: [],
-        newTopic: ''
+        newFavorite: ''
       }
     );
   });
@@ -61,7 +61,7 @@ describe('Topics reducer', () => {
             text: topic
           }
         ],
-        newTopic: ''
+        newFavorite: ''
     });
   });
 
@@ -69,11 +69,11 @@ describe('Topics reducer', () => {
     expect(
       reducer(undefined, {
         type: types.TYPING,
-        newTopic: topic
+        newFavorite: topic
       })
     ).toEqual({
         topics: [],
-        newTopic: topic
+        newFavorite: topic
     });
   });
 
@@ -84,7 +84,7 @@ describe('Topics reducer', () => {
       })
     ).toEqual({
         topics: [],
-        newTopic: ''
+        newFavorite: ''
     });
   });
 
@@ -96,13 +96,13 @@ describe('Topics reducer', () => {
       })
     ).toEqual({
         topics: topic,
-        newTopic: ''
+        newFavorite: ''
     });
   });
 
   it('Should handle CREATE_TOPIC_REQUEST', () => {
     const topics = createTopics(20);
-    const newTopics = [...topics, data];
+    const newFavorites = [...topics, data];
     expect(
       reducer({
         topics
@@ -115,92 +115,92 @@ describe('Topics reducer', () => {
 
       })
     ).toEqual({
-        newTopic: '',
-        topics: newTopics
+        newFavorite: '',
+        topics: newFavorites
     });
   });
 
   it('should handle CREATE_TOPIC_FAILURE', () => {
     const topics = createTopics(20);
     topics.push(data);
-    const newTopics = [...topics];
+    const newFavorites = [...topics];
     expect(
       reducer({
         topics,
-        newTopic: topic
+        newFavorite: topic
       },
       {
         type: types.CREATE_TOPIC_FAILURE,
         id: data.id
       })
     ).toEqual({
-        topics: newTopics.pop() && newTopics,
-        newTopic: topic
+        topics: newFavorites.pop() && newFavorites,
+        newFavorite: topic
     });
   });
 
   it('should handle DESTROY_TOPIC', () => {
     const topics = createTopics(20);
     topics.push(data);
-    const newTopics = [...topics];
+    const newFavorites = [...topics];
     expect(
       reducer({
         topics,
-        newTopic: topic
+        newFavorite: topic
       },
       {
         type: types.DESTROY_TOPIC,
         id: topics[topics.length - 1].id,
       })
     ).toEqual({
-        topics: newTopics.pop() && newTopics,
-        newTopic: topic
+        topics: newFavorites.pop() && newFavorites,
+        newFavorite: topic
     });
   });
 
   it('should handle INCREMENT_COUNT', () => {
     const topics = createTopics(20);
-    const newTopics = [...topics];
+    const newFavorites = [...topics];
     topics.push(data);
     const newData = Object.assign({}, data);
     newData.count++;
-    newTopics.push(newData);
+    newFavorites.push(newData);
 
     expect(
       reducer({
         topics,
-        newTopic: topic
+        newFavorite: topic
       },
       {
         type: types.INCREMENT_COUNT,
         id: topics[topics.length - 1].id,
       })
     ).toEqual({
-        topics: newTopics,
-        newTopic: topic
+        topics: newFavorites,
+        newFavorite: topic
     });
   });
 
   it('should handle DECREMENT_COUNT', () => {
     const topics = createTopics(20);
-    const newTopics = [...topics];
+    const newFavorites = [...topics];
     topics.push(data);
     const newData = Object.assign({}, data);
     newData.count--;
-    newTopics.push(newData);
+    newFavorites.push(newData);
 
     expect(
       reducer({
         topics,
-        newTopic: topic
+        newFavorite: topic
       },
       {
         type: types.DECREMENT_COUNT,
         id: topics[topics.length - 1].id,
       })
     ).toEqual({
-        topics: newTopics,
-        newTopic: topic
+        topics: newFavorites,
+        newFavorite: topic
     });
   });
 });
