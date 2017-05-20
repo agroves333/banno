@@ -6,17 +6,9 @@ import {SEARCH, RECEIVE_RESULTS, SEARCH_ERROR, QUERY, RELATED} from 'types';
 
 polyfill();
 
-export const updateQuery = query => {
+const requestResults = () => {
   return {
-    type: QUERY,
-    query
-  }
-};
-
-const requestResults = data => {
-  return {
-    type: SEARCH,
-    data
+    type: SEARCH
   }
 };
 
@@ -36,9 +28,9 @@ const searchError = (error, searchType, provider) => {
   };
 };
 
-const search = (query, page = null, filter) => {
+export const search = (query, page = null, filter) => {
   return dispatch => {
-    dispatch(requestResults({searchType: 'videos', provider: 'youtube'}));
+    dispatch(requestResults());
 
     const startTime = new Date();
     const order = get(filter, 'order', 'relevance');
@@ -76,8 +68,6 @@ const search = (query, page = null, filter) => {
         const searchTime = (endTime - startTime) / 1000;
 
         dispatch(receiveResults({
-          searchType: 'videos',
-          provider: 'youtube',
           items,
           prev: get(response, 'data.prevPageToken', null),
           next: get(response, 'data.nextPageToken', null),

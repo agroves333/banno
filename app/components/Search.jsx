@@ -3,7 +3,6 @@
 import React, { PropTypes, Component} from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
-import { push } from 'react-router-redux';
 import {Row, Col, FormGroup, FormControl, Form, Button, InputGroup, Glyphicon} from 'react-bootstrap';
 const InputGroupButton = InputGroup.Button;
 
@@ -12,7 +11,7 @@ import {decodeURL} from 'utils/URL';
 import SearchInput from 'components/SearchInput';
 
 // Actions
-import {search, updateQuery} from 'actions/search'
+import {search} from 'actions/search'
 
 import styles from 'css/components/search';
 
@@ -42,8 +41,7 @@ class Search extends Component {
 
     search() {
         if (this.state.query !== '') {
-            this.props.updateQuery(this.state.query);
-            this.props.push(`/search/${this.props.type}?q=${decodeURL(this.state.query)}`);
+            this.props.search(this.state.query);
         }
     }
 
@@ -104,4 +102,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {push, updateQuery})(Search);
+export default connect(mapStateToProps, {search})(Search);

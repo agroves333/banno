@@ -27,7 +27,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
 
   const createCssLoaders = embedCssInBundle => ([
     {
-      loader: embedCssInBundle ? 'css-loader' : 'css-loader/locals',
+      loader: 'css-loader',
       options: {
         localIndentName,
         sourceMap: true,
@@ -66,4 +66,3 @@ module.exports = ({ production = false, browser = false } = {}) => {
     include: PATHS.app
   };
 };
-

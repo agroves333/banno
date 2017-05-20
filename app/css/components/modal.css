@@ -9,25 +9,25 @@ span.close {
     font-size: 33px;
 }
 
-:global {
-    div.modal-dialog, div.modal-content, div.modal-header, div.modal-header {
-        background-color: rgba(0,0,0,0);
-        box-shadow: none;
-        border: none;
-    }
-
-    div.modal-dialog .close {
-        opacity: 1;
-        background: rgba(0,0,0,0);
-        color: white;
-        font-size: 36px;
-    }
-
-    div.modal-backdrop.in {
-        opacity: 0.8;
-    }
-
-    div.modal-dialog {
-        margin-top: 60px;
-    }
+:global(div.modal-dialog), :global(div.modal-content), :global(div.modal-header), :global(div.modal-header) {
+    background-color: rgba(0,0,0,0);
+    box-shadow: none;
+    border: none;
 }
+
+:global(div.modal-dialog .close) {
+    opacity: 1;
+    background: rgba(0,0,0,0);
+    color: white;
+    font-size: 36px;
+}
+
+:global(div.modal-backdrop.in) {
+    opacity: 0.8;
+}
+
+:global(div.modal-dialog) {
+    margin-top: 60px;
+    width: 100%;
+}
+

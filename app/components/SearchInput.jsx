@@ -20,7 +20,8 @@ class SearchInput extends Component {
         };
 
         this.onChange = this.onChange.bind(this);
-        this.onSuggestionsUpdateRequested = this.onSuggestionsUpdateRequested.bind(this);
+        this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+        this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
         this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
         this.handleEraseClick = this.handleEraseClick.bind(this);
     }
@@ -44,15 +45,13 @@ class SearchInput extends Component {
 
     }
 
-    onSuggestionsUpdateRequested({ value }) {
+    onSuggestionsFetchRequested({ value }) {
         const inputValue = value.trim().toLowerCase();
         return inputValue.length && this.props.dispatch(suggest(inputValue));
     }
 
     onSuggestionsClearRequested = () => {
-        this.setState({
-            value: []
-        });
+        this.props.dispatch(suggest(''))
     };
 
     onSuggestionSelected(event, { suggestion, suggestionValue, sectionIndex, method }) {
@@ -90,7 +89,7 @@ class SearchInput extends Component {
         return (
             <Autosuggest theme={theme}
               suggestions={this.props.suggestions}
-              onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
               onSuggestionsClearRequested={this.onSuggestionsClearRequested}
               onSuggestionSelected={this.onSuggestionSelected}
               getSuggestionValue={this.getSuggestionValue}

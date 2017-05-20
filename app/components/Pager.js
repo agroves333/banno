@@ -18,10 +18,9 @@ class Pager extends Component {
   }
 
   handleSelect(pageType) {
-    this.props.search(this.props.type,
+    this.props.search(
             this.props.query,
-            this.props.results,
-            this.props.provider,
+            this.props.results ? this.props.results[pageType] : '',
             this.props.filter
     );
 
@@ -80,7 +79,6 @@ Pager.propTypes = {
 const mapStateToProps = (state) => {
   return {
     results: state.results,
-    type: state.type,
     query: state.query
   }
 };

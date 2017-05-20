@@ -69,7 +69,7 @@ class VideoResults extends Component {
             activeDimension: filter.videoDimension ? filter.videoDimension : this.state.activeDimension,
             activeDefinition: filter.videoDefinition ? filter.videoDefinition : this.state.activeDefinition
         }, () => {
-            this.props.search(this.props.query, {
+            this.props.search(this.props.query, null, {
                 order: this.state.activeSort,
                 videoDuration: this.state.activeDuration,
                 videoDimension: this.state.activeDimension,
@@ -180,9 +180,9 @@ class VideoResults extends Component {
 
     renderResults() {
 
-        const items = get(this.props.results, 'videos.youtube.items', []);
+        const items = get(this.props, 'results.items', []);
 
-        if (has(this.props.results, `videos.youtube.items`) && this.props.results.videos.youtube.items.length === 0) {
+        if (has(this.props, 'results.items') && this.props.results.items.length === 0) {
           return <NoResults query={this.props.query} />
         }
       
@@ -200,7 +200,7 @@ class VideoResults extends Component {
     renderLoader() {
   
         const loaderClasses = classnames('loader', {
-          hidden: !get(this.props.results, `videos.youtube.isLoading`, false)
+          hidden: !get(this.props, 'results.isLoading', false)
         });
   
         return  <div className={loaderClasses}></div>
@@ -218,7 +218,10 @@ class VideoResults extends Component {
                     </Col>
                     <Col xs={12}
                          md={10}>
-                        <Pager provider="youtube"
+                        <Pager
+                            results={this.props.results}
+                            query={this.props.query}
+                            search={this.props.search}
                             filter={{
                                 order: this.state.activeSort,
                                 videoDuration: this.state.activeDuration,

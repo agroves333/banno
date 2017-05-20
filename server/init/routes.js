@@ -2,6 +2,8 @@
  * Routes for express app
  */
 import passport from 'passport';
+import request from "request";
+
 import unsupportedMessage from '../db/unsupportedMessage';
 import { controllers, passport as passportConfig } from '../db';
 

@@ -1,11 +1,9 @@
 .filters {
 }
 
-:global {
-    .filterLink.active {
-        font-weight: bold;
-    }
-    li.filterLink a {
-        padding: 0px 15px;
-    }
+:global(.filterLink.active) {
+    font-weight: bold;
+}
+:global(li.filterLink a) {
+    padding: 0px 15px;
 }

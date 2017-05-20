@@ -8,7 +8,7 @@ import bold from 'utils/bold';
 
 import styles from 'css/components/video-item';
 
-const VideoItem = ({data, query, onClick, key}) => {
+const VideoItem = ({data, query, onClick}) => {
     const {title, videoId, description, thumbnailUrl, publishedAt} = data;
 
     return (
@@ -17,7 +17,6 @@ const VideoItem = ({data, query, onClick, key}) => {
                 <Col xs={3}>
                     <img className={styles.thumbnail}
                          src={thumbnailUrl}
-                         alt={key}
                     />
                 </Col>
                 <Col xs={9}>

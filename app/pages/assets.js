@@ -11,7 +11,7 @@ const metaAssets = () => {
     { charset: 'utf-8' },
     // Meta descriptions are commonly used on search engine result pages to
     // display preview snippets for a given page.
-    { name: 'description', content: 'Your One-Stop solution for a full-stack universal Redux App' },
+    { name: 'description', content: 'BannoTube' },
     // Setting IE=edge tells Internet Explorer to use the latest engine to
     //  render the page and execute Javascript
     { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
@@ -43,15 +43,17 @@ const linkAssets = () => {
     { rel: 'icon', href: favicon },
     { rel: 'icon', sizes: '192x192', href: chromeFavicon },
     // Add to homescreen for Safari on IOS
-    { rel: 'apple-touch-icon', sizes: '152x152', href: appleFavicon }
+    { rel: 'apple-touch-icon', sizes: '152x152', href: appleFavicon },
     // SEO: If your mobile URL is different from the desktop URL,
     // add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones
     // { 'rel': 'canonical', 'href': 'http://www.example.com/' }
+    { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css'},
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto+Condensed'}
   ];
 
   return links;
 };
 
-export const title = 'reactGo - just ship it';
+export const title = 'Banno';
 export const meta = metaAssets();
 export const link = linkAssets();
