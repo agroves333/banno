@@ -196,6 +196,8 @@ class VideoResults extends Component {
                     data={data}
                     onClick={() => this.handleOpenVideoModal.bind(this, data)}
                     query={this.props.query}
+                    save={this.props.save}
+                    unsave={this.props.unsave}
                 />
             )
         });

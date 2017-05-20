@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import {Row, Col} from 'react-bootstrap';
+import Save from 'components/Save';
+
 import {get} from 'lodash';
 import moment from 'moment';
 import bold from 'utils/bold';
 
 import styles from 'css/components/video-item';
 
-const VideoItem = ({data, query, onClick}) => {
+const VideoItem = ({data, query, onClick, save, unsave}) => {
     const {title, videoId, description, thumbnailUrl, publishedAt} = data;
 
     return (
@@ -30,7 +32,10 @@ const VideoItem = ({data, query, onClick}) => {
                     </div>
                 </div>
                 <div className="col-xs-1">
-                  
+                  <Save
+                      data={data}
+                      save={save}
+                      unsave={unsave}/>
                 </div>
             </Row>
         </div>
@@ -40,11 +45,13 @@ const VideoItem = ({data, query, onClick}) => {
 VideoItem.propTypes = {
     data: PropTypes.object.isRequired,
     onClick: PropTypes.func,
+    save: PropTypes.func,
+    unsave: PropTypes.func,
     query: PropTypes.string
 };
 
 VideoItem.defaultProps = {
-    onClick: () => {}
+    onClick: () => {},
 };
 
 export default VideoItem;

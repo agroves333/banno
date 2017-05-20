@@ -103,7 +103,6 @@ SearchInput.propTypes = {
     suggestions: PropTypes.array,
     onChange: PropTypes.func,
     onSuggestionSelected: PropTypes.func,
-    dispatch: PropTypes.func.isRequired,
     type: PropTypes.string,
     value: PropTypes.string,
     size: PropTypes.string,

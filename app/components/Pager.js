@@ -38,18 +38,6 @@ class Pager extends Component {
   render() {
     return (
         <div className="clearfix">
-          <RBPager>
-            <PagerItem previous
-                       onSelect={() => this.handleSelect('prev')}
-                       disabled={get(this.props.results, `prev`, null) === null}>
-              &larr; Previous Page
-            </PagerItem>
-            <PagerItem next
-                       onSelect={() => this.handleSelect('next')}
-                       disabled={get(this.props.results, `next`, null) === null}>
-              Next Page &rarr;
-            </PagerItem>
-          </RBPager>
           {this.props.children}
           <RBPager>
             <PagerItem previous

@@ -1,25 +1,21 @@
-import { combineReducers } from 'redux';
 import * as types from '../types';
 
-const favorite = (
-  state = {},
-  action
-) => {
+const favorite = (state = {}, action) => {
   switch (action.type) {
     case types.CREATE_FAVORITE_REQUEST:
       return {
-        id: action.id,
-        text: action.text
+        title: action.data.title,
+        publishedAt: action.data.publishedAt,
+        description: action.data.description,
+        videoId: action.data.videoId,
+        thumbnailUrl: action.data.thumbnailUrl
       };
     default:
       return state;
   }
 };
 
-const favorites = (
-  state = [],
-  action
-) => {
+const favorites = (state = [], action) => {
   switch (action.type) {
     case types.REQUEST_SUCCESS:
       if (action.data) return action.data;
@@ -35,23 +31,4 @@ const favorites = (
   }
 };
 
-const newFavorite = (
-  state = '',
-  action
-) => {
-  switch (action.type) {
-    case types.TYPING:
-      return action.newFavorite;
-    case types.CREATE_FAVORITE_REQUEST:
-      return '';
-    default:
-      return state;
-  }
-};
-
-const favoriteReducer = combineReducers({
-  favorites,
-  newFavorite
-});
-
-export default favoriteReducer;
+export default favorites;

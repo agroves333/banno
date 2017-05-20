@@ -6,8 +6,10 @@ import mongoose from 'mongoose';
 
 const FavoriteSchema = new mongoose.Schema({
   id: String,
-  text: String,
-  count: { type: Number, min: 0 },
+  title: String,
+  publishedAt: Date,
+  description: String,
+  thumbnailUrl: String,
   date: { type: Date, default: Date.now }
 });
 
