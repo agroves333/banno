@@ -2,7 +2,7 @@ import {polyfill} from 'es6-promise';
 import axios from 'axios';
 import {get, has} from 'lodash';
 import config from 'config';
-import {SEARCH, RECEIVE_RESULTS, SEARCH_ERROR, QUERY, RELATED} from 'types';
+import {SEARCH, SEARCH_COMMENTS, RECEIVE_RESULTS, RECEIVE_COMMENTS, SEARCH_ERROR, SEARCH_COMMENT_ERROR, UPDATE_QUERY} from 'types';
 
 polyfill();
 
@@ -12,9 +12,22 @@ const requestResults = () => {
   }
 };
 
+const requestComments = () => {
+  return {
+    type: SEARCH_COMMENTS
+  }
+};
+
 const receiveResults = data => {
   return {
     type: RECEIVE_RESULTS,
+    data
+  };
+};
+
+const receiveComments = data => {
+  return {
+    type: RECEIVE_COMMENTS,
     data
   };
 };
@@ -28,10 +41,26 @@ const searchError = (error, searchType, provider) => {
   };
 };
 
+const searchCommentError = (error, searchType, provider) => {
+  return {
+    type: SEARCH_COMMENT_ERROR,
+    error,
+    searchType,
+    provider
+  };
+};
+
+const updateQuery = (query) => {
+  return {
+    type: UPDATE_QUERY,
+    query
+  };
+};
+
 export const search = (query, page = null, filter) => {
   return dispatch => {
     dispatch(requestResults());
-
+    dispatch(updateQuery(query));
     const startTime = new Date();
     const order = get(filter, 'order', 'relevance');
     const videoDuration = get(filter, 'videoDuration', 'any');
@@ -79,6 +108,43 @@ export const search = (query, page = null, filter) => {
       }
     }).catch((error) => {
       dispatch(searchError(error));
+    });
+  }
+};
+
+export const searchComments = (videoId, page = null) => {
+  return dispatch => {
+    dispatch(requestComments());
+    axios.get(config.youTubeCommentsBaseURL, {
+      params: {
+        key: config.googleApiKey,
+        part: 'snippet,replies',
+        videoId,
+        pageToken: page,
+      }
+    }).then(response => {
+      if (response.status === 200) {
+        const items = get(response, 'data.items', []).map((item) => {
+          const comment = get(item, 'snippet.topLevelComment.snippet', []);
+          return {
+            name: comment.authorDisplayName,
+            image: comment.authorProfileImageUrl,
+            text: comment.textDisplay,
+            publishedAt: comment.publishedAt,
+          }
+        });
+
+        dispatch(receiveComments({
+          items,
+          totalResults: get(response, 'data.pageInfo.totalResults', 0),
+          prev: get(response, 'data.prevPageToken', null),
+          next: get(response, 'data.nextPageToken', null),
+        }));
+      } else {
+        dispatch(searchCommentError('error'));
+      }
+    }).catch((error) => {
+      dispatch(searchCommentError(error));
     });
   }
 };

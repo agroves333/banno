@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import classNames from 'classnames/bind';
-import Search from '../components/Search';
-import VideoResults from '../containers/VideoResults';
-
-// Actions
-import {createFavorite, typing, destroyFavorite} from '../actions/favorites';
+import SearchContainer from '../containers/SearchContainer';
+import ResultsContainer from '../containers/ResultsContainer';
 
 // Styles
 import styles from '../css/components/home';
@@ -20,11 +16,11 @@ class Home extends Component {
             <div className={cx('home')}>
                 <div className="row">
                     <div className="col-xs-12">
-                      <Search
+                      <SearchContainer
                           favorite={newFavorite}
                           onEntryChange={typing}
                           onEntrySave={createFavorite}/>
-                      <VideoResults />
+                      <ResultsContainer />
                     </div>
                 </div>
             </div>
@@ -40,11 +36,4 @@ Home.propTypes = {
   newFavorite: PropTypes.string
 };
 
-function mapStateToProps(state) {
-  return {
-    favorites: state.favorite.favorites,
-    newFavorite: state.favorite.newFavorite
-  };
-}
-
-export default connect(mapStateToProps, {createFavorite, typing, destroyFavorite})(Home);
+export default Home;

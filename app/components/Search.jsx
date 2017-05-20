@@ -1,6 +1,5 @@
-'use strict';
-
-import React, { PropTypes, Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {Row, Col, FormGroup, FormControl, Form, Button, InputGroup, Glyphicon} from 'react-bootstrap';
@@ -12,6 +11,7 @@ import SearchInput from 'components/SearchInput';
 
 // Actions
 import {search} from 'actions/search'
+import {suggest} from 'actions/suggest';
 
 import styles from 'css/components/search';
 
@@ -67,11 +67,14 @@ class Search extends Component {
                         <InputGroup>
                             <SearchInput
                                 ref={ref => this.input = ref}
+                                query={this.state.query}
+                                suggestions={this.props.suggestions}
                                 placeholder="Search"
                                 onChange={this.handleOnChange}
                                 onSuggestionSelected={this.handleOnSuggestionSelected}
                                 value={this.state.query}
                                 size="lg"
+                                suggest={this.props.suggest}
                             />
                             <InputGroupButton>
                                 <Button
@@ -99,7 +102,8 @@ function mapStateToProps(state) {
 
     return {
         query: state.query,
+        suggestions: state.suggestions
     }
 }
 
-export default connect(mapStateToProps, {search})(Search);
+export default connect(mapStateToProps, {search, suggest})(Search);

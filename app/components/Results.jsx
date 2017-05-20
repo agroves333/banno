@@ -1,7 +1,5 @@
-'use strict';
-
-import React, {Component, PropTypes} from 'react'
-import {connect} from 'react-redux';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types';
 import {
     Row,
     Col,
@@ -16,6 +14,7 @@ import VideoItem from 'components/VideoItem';
 import Pager from 'components/Pager';
 import Modal from 'components/Modal';
 import NoResults from 'components/NoResults';
+import CommentsContainer from 'containers/CommentsContainer';
 
 // Actions
 import {search} from 'actions/search';
@@ -36,6 +35,7 @@ class VideoResults extends Component {
         this.state = {
             videoUrl: '',
             videoTitle: '',
+            videoId: '',
             showVideoModal: false,
             activeSort: 'relevance',
             activeDuration: 'any',
@@ -58,7 +58,8 @@ class VideoResults extends Component {
         this.setState({
             showVideoModal: true,
             videoTitle: data.title,
-            videoUrl: this.getYoutubeUrl(data.videoId)
+            videoUrl: this.getYoutubeUrl(data.videoId),
+            videoId: data.videoId
         });
     }
 
@@ -95,6 +96,9 @@ class VideoResults extends Component {
                                 frameborder="0"
                                 allowFullScreen>
                             </iframe>
+                        </div>
+                        <div>
+                          <CommentsContainer videoId={this.state.videoId}/>
                         </div>
                     </Col>
                 </Row>
@@ -250,11 +254,4 @@ VideoResults.propTypes = {
     query: PropTypes.string
 };
 
-const mapStateToProps = (state) => {
-    return {
-        results: state.results,
-        query: state.query,
-    }
-};
-
-export default connect(mapStateToProps, {search})(VideoResults);
+export default VideoResults;

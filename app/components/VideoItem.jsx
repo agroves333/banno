@@ -1,6 +1,5 @@
-'use strict';
-
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import {Row, Col} from 'react-bootstrap';
 import {get} from 'lodash';
 import moment from 'moment';
@@ -14,12 +13,12 @@ const VideoItem = ({data, query, onClick}) => {
     return (
         <div className={styles.item}>
             <Row onClick={onClick(videoId)}>
-                <Col xs={3}>
+                <div className="col-xs-3">
                     <img className={styles.thumbnail}
                          src={thumbnailUrl}
                     />
-                </Col>
-                <Col xs={9}>
+                </div>
+                <div className="col-xs-8">
                     <div className={styles.title}>
                        <a dangerouslySetInnerHTML={{__html: bold(query, title)}} />
                     </div>
@@ -29,7 +28,10 @@ const VideoItem = ({data, query, onClick}) => {
                     <div className={styles.description}
                          dangerouslySetInnerHTML={{__html: bold(query, description)}}>
                     </div>
-                </Col>
+                </div>
+                <div className="col-xs-1">
+                  
+                </div>
             </Row>
         </div>
     );

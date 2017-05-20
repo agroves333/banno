@@ -1,12 +1,10 @@
 import React from 'react';
 import Page from '../pages/Page';
-import AppContainer from '../containers/App';
+import App from '../components/App';
 import { title, meta, link } from './assets';
 
-const App = props => (
+export default props => (
   <Page title={title} meta={meta} link={link}>
-    <AppContainer {...props} />
+    <App {...props} />
   </Page>
 );
-
-export default App;

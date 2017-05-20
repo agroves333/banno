@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Page from '../pages/Page';
-import HomeContainer from '../containers/Home';
+import HomeContainer from '../containers/HomeContainer';
 
 class Home extends Component {
   getMetaData() {

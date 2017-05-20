@@ -5,6 +5,8 @@ import favorite from '../reducers/favorite';
 import message from '../reducers/message';
 import results from '../reducers/results';
 import suggestions from '../reducers/suggestions';
+import comments from '../reducers/comments';
+import query from '../reducers/query';
 import * as types from '../types';
 
 const isFetching = (state = false, action) => {
@@ -27,7 +29,9 @@ const rootReducer = combineReducers({
   user,
   results,
   suggestions,
+  comments,
   message,
+  query,
   routing,
 });
 

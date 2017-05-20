@@ -1,9 +1,6 @@
-'use strict';
-
-import React, { PropTypes, Component } from 'react'
-import {connect} from 'react-redux';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
-import {suggest, placesSuggest} from 'actions/suggest';
 import {Glyphicon} from 'react-bootstrap';
 import classnames from 'classnames';
 
@@ -47,11 +44,11 @@ class SearchInput extends Component {
 
     onSuggestionsFetchRequested({ value }) {
         const inputValue = value.trim().toLowerCase();
-        return inputValue.length && this.props.dispatch(suggest(inputValue));
+        return inputValue.length && this.props.suggest(inputValue);
     }
 
     onSuggestionsClearRequested = () => {
-        this.props.dispatch(suggest(''))
+        this.props.suggest('');
     };
 
     onSuggestionSelected(event, { suggestion, suggestionValue, sectionIndex, method }) {
@@ -101,6 +98,7 @@ class SearchInput extends Component {
 }
 
 SearchInput.propTypes = {
+    query: PropTypes.string,
     placeholder: PropTypes.string,
     suggestions: PropTypes.array,
     onChange: PropTypes.func,
@@ -108,7 +106,8 @@ SearchInput.propTypes = {
     dispatch: PropTypes.func.isRequired,
     type: PropTypes.string,
     value: PropTypes.string,
-    size: PropTypes.string
+    size: PropTypes.string,
+    suggest: PropTypes.func
 };
 
 SearchInput.defaultProps = {
@@ -118,12 +117,4 @@ SearchInput.defaultProps = {
     suggestions: []
 };
 
-function mapStateToProps(state) {
-
-    return {
-        suggestions: state.suggestions,
-        query: state.query,
-    }
-}
-
-export default connect(mapStateToProps)(SearchInput);
+export default SearchInput;
