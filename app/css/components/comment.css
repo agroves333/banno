@@ -1,5 +1,5 @@
 .comment {
-    color: #ffffff;
+    color: #ddd;
     list-style-type: none;
     padding: 20px;
     background-color: rgba(0, 0, 0, .6);
@@ -18,5 +18,7 @@
 }
 
 .publishedAt {
-
+    margin-left: 20px;
+    color: #aaa;
+    font-size: 12px;
 }

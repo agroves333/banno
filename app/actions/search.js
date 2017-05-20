@@ -128,6 +128,7 @@ export const searchComments = (videoId, page = null) => {
           const comment = get(item, 'snippet.topLevelComment.snippet', []);
           return {
             name: comment.authorDisplayName,
+            authorUrl: comment.authorChannelUrl,
             image: comment.authorProfileImageUrl,
             text: comment.textDisplay,
             publishedAt: comment.publishedAt,

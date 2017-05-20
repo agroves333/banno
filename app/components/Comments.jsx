@@ -22,9 +22,12 @@ class Comments extends Component {
 
   render() {
     return (
-        <ul className={cx('comments')}>
-          {this.renderComments()}
-        </ul>
+        <div className={cx('wrapper')}>
+          <h3 className={cx('header')}>Comments</h3>
+          <ul className={cx('comments')}>
+            {this.renderComments()}
+          </ul>
+        </div>
     );
   }
 }
