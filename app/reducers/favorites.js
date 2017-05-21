@@ -25,7 +25,7 @@ const favorites = (state = [], action) => {
     case types.CREATE_FAVORITE_FAILURE:
       return state.filter(t => t.id !== action.id);
     case types.DESTROY_FAVORITE:
-      return state.filter(t => t.id !== action.id);
+      return state.filter(t => t.videoId !== action.id);
     default:
       return state;
   }

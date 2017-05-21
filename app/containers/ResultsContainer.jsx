@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
     return {
         results: state.results,
         query: state.query,
+        favorites: state.favorites
     }
 };
 

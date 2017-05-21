@@ -136,10 +136,10 @@ export const searchComments = (videoId, page = null) => {
         });
 
         dispatch(receiveComments({
+          videoId,
           items,
           totalResults: get(response, 'data.pageInfo.totalResults', 0),
-          prev: get(response, 'data.prevPageToken', null),
-          next: get(response, 'data.nextPageToken', null),
+          next: get(response, 'data.nextPageToken', null)
         }));
       } else {
         dispatch(searchCommentError('error'));

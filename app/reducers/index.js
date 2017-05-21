@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import user from '../reducers/user';
-import favorite from '../reducers/favorite';
+import favorites from '../reducers/favorites';
 import message from '../reducers/message';
 import results from '../reducers/results';
 import suggestions from '../reducers/suggestions';
@@ -25,14 +25,14 @@ const isFetching = (state = false, action) => {
 // router state
 const rootReducer = combineReducers({
   isFetching,
-  favorite,
+  favorites,
   user,
   results,
   suggestions,
   comments,
   message,
   query,
-  routing,
+  routing
 });
 
 export default rootReducer;

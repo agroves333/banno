@@ -189,8 +189,18 @@ class VideoResults extends Component {
         if (has(this.props, 'results.items') && this.props.results.items.length === 0) {
           return <NoResults query={this.props.query} />
         }
+
+        const favoriteIds = this.props.favorites && this.props.favorites.map(favorite => {
+            return favorite.videoId;
+        });
       
         return items.map((data, key) => {
+            let isSaved = false;
+            favoriteIds && favoriteIds.forEach(favoriteId => {
+                if (data.videoId === favoriteId) {
+                  isSaved = true;
+                }
+            });
             return (
                 <VideoItem key={'video-'+key}
                     data={data}
@@ -198,6 +208,7 @@ class VideoResults extends Component {
                     query={this.props.query}
                     save={this.props.save}
                     unsave={this.props.unsave}
+                    isSaved={isSaved}
                 />
             )
         });

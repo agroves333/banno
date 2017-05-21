@@ -3,18 +3,30 @@ import PropTypes from 'prop-types';
 import Comment from 'components/Comment';
 
 import get from 'lodash/get';
+import has from 'lodash/has';
+
 import classNames from 'classnames/bind';
 import styles from '../css/components/comments';
 const cx = classNames.bind(styles);
 
 class Comments extends Component {
 
+  constructor(props) {
+    super(props);
+    this.handleLoadMore = this.handleLoadMore.bind(this);
+  }
+
   componentDidMount() {
-    this.props.searchComments(this.props.videoId);
+    // Used cached comments if they exist, otherwise fetch new ones
+    !has(this.props, `comments.${this.props.videoId}`) && this.props.searchComments(this.props.videoId);
+  }
+
+  handleLoadMore(event) {
+    this.props.searchComments(this.props.videoId, get(this.props, 'comments.next', ''), true);
   }
 
   renderComments() {
-    return get(this.props, 'comments.items', []).map((comment, key) => {
+    return get(this.props, `comments.${this.props.videoId}.items`, []).map((comment, key) => {
       return <Comment key={key}
                       data={comment} />
     })
@@ -27,6 +39,11 @@ class Comments extends Component {
           <ul className={cx('comments')}>
             {this.renderComments()}
           </ul>
+          <button
+              className="btn btn-primary center-block"
+              onClick={this.handleLoadMore}>
+            Load More
+          </button>
         </div>
     );
   }
@@ -34,7 +51,7 @@ class Comments extends Component {
 
 Comments.propTypes = {
   videoId: PropTypes.number,
-  comments: PropTypes.array
+  comments: PropTypes.object
 };
 
 Comments.defaultProps = {

@@ -9,7 +9,7 @@ import bold from 'utils/bold';
 
 import styles from 'css/components/video-item';
 
-const VideoItem = ({data, query, onClick, save, unsave}) => {
+const VideoItem = ({data, query, onClick, save, unsave, isSaved}) => {
     const {title, videoId, description, thumbnailUrl, publishedAt} = data;
 
     return (
@@ -20,7 +20,7 @@ const VideoItem = ({data, query, onClick, save, unsave}) => {
                          src={thumbnailUrl}
                     />
                 </div>
-                <div className="col-xs-8">
+                <div className="col-xs-7">
                     <div className={styles.title}>
                        <a dangerouslySetInnerHTML={{__html: bold(query, title)}} />
                     </div>
@@ -31,11 +31,12 @@ const VideoItem = ({data, query, onClick, save, unsave}) => {
                          dangerouslySetInnerHTML={{__html: bold(query, description)}}>
                     </div>
                 </div>
-                <div className="col-xs-1">
+                <div className="col-xs-2">
                   <Save
                       data={data}
                       save={save}
-                      unsave={unsave}/>
+                      unsave={unsave}
+                      isSaved={isSaved}/>
                 </div>
             </Row>
         </div>
@@ -47,7 +48,8 @@ VideoItem.propTypes = {
     onClick: PropTypes.func,
     save: PropTypes.func,
     unsave: PropTypes.func,
-    query: PropTypes.string
+    query: PropTypes.string,
+    isSaved: PropTypes.bool
 };
 
 VideoItem.defaultProps = {
