@@ -58,10 +58,9 @@ export default (app) => {
 
   // favorites routes
   if (favoritesController) {
-    app.get('/favorite', favoritesController.all);
-    app.post('/favorite/:id', favoritesController.add);
-    app.put('/favorite/:id', favoritesController.update);
-    app.delete('/favorite/:id', favoritesController.remove);
+    app.get('/api/favorite', favoritesController.all);
+    app.post('/api/favorite/:id', favoritesController.add);
+    app.delete('/api/favorite/:id', favoritesController.remove);
   } else {
     console.warn(unsupportedMessage('favorite routes'));
   }

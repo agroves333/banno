@@ -25,7 +25,8 @@ const UserSchema = new mongoose.Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
-  google: {}
+  google: {},
+  favorites : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Favorite' }]
 });
 
 function encryptPassword(next) {

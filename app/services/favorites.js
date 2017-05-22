@@ -6,20 +6,15 @@ export default () => {
   return {
     getFavorites: () => client.request({
       method: 'GET',
-      url: '/favorite'
+      url: '/api/favorite'
     }),
     deleteFavorite: ({ id }) => client.request({
       method: 'DELETE',
-      url: `/favorite/${id}`
-    }),
-    updateFavorite: ({ id, data }) => client.request({
-      method: 'PUT',
-      url: `/favorite/${id}`,
-      data
+      url: `/api/favorite/${id}`
     }),
     createFavorite: ({ id, data }) => client.request({
       method: 'POST',
-      url: `/favorite/${id}`,
+      url: `/api/favorite/${id}`,
       data
     })
   };

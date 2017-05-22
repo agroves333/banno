@@ -27,7 +27,7 @@ Save.propTypes = {
   isSaved: PropTypes.bool,
   save: PropTypes.func,
   unsaved: PropTypes.func,
-  data: PropTypes.object,
+  data: PropTypes.object
 };
 
 export default Save;

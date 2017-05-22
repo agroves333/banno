@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Page from '../pages/Page';
-import DashboardContainer from '../containers/Dashboard';
+import FavoritesContainer from '../containers/FavoritesContainer';
 
-class Dashboard extends Component {
+class FavoritesPage extends Component {
   getMetaData() {
     return {
       title: this.pageTitle(),
@@ -12,12 +12,12 @@ class Dashboard extends Component {
   }
 
   pageTitle = () => {
-    return 'Dashboard | reactGo';
+    return 'BannoTube | Favorites';
   };
 
   pageMeta = () => {
     return [
-      { name: 'description', content: 'A reactGo example of a dashboard page' }
+      { name: 'description', content: 'Favorite Videos' }
     ];
   };
 
@@ -28,11 +28,11 @@ class Dashboard extends Component {
   render() {
     return (
       <Page {...this.getMetaData()}>
-        <DashboardContainer {...this.props} />
+        <FavoritesContainer />
       </Page>
     );
   }
 }
 
-export default Dashboard;
+export default FavoritesPage;
 

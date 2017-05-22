@@ -9,7 +9,7 @@ import hourGlassSvg from '../images/hourglass.svg';
 
 const cx = classNames.bind(styles);
 
-class LoginOrRegister extends Component {
+class Login extends Component {
   /*
    * This replaces getInitialState. Likewise getDefaultProps and propTypes are just
    * properties on the constructor
@@ -74,7 +74,7 @@ class LoginOrRegister extends Component {
           waiting: isWaiting
         })}
       >
-        <div className={cx('container')}>
+        <div className={cx('')}>
           { this.renderHeader() }
           <img className={cx('loading')} alt="loading" src={hourGlassSvg} />
           <div className={cx('email-container')}>
@@ -88,7 +88,7 @@ class LoginOrRegister extends Component {
               <input
                 className={cx('input')}
                 type="password"
-               ref="password"
+                ref="password"
                 placeholder="password"
               />
               <div className={cx('hint')}>
@@ -117,7 +117,7 @@ class LoginOrRegister extends Component {
   }
 }
 
-LoginOrRegister.propTypes = {
+Login.propTypes = {
   user: PropTypes.object,
   manualLogin: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
@@ -135,5 +135,5 @@ function mapStateToProps({user}) {
 // Connects React component to the redux store
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
-export default connect(mapStateToProps, { manualLogin, signUp, toggleLoginMode })(LoginOrRegister);
+export default connect(mapStateToProps, { manualLogin, signUp, toggleLoginMode })(Login);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { fetchFavorites } from './fetch-data';
-import { App, HomePage, LoginPage } from './pages';
+import { App, HomePage, FavoritesPage, LoginPage } from './pages';
 
 /*
  * @param {Redux Store}
@@ -32,6 +32,7 @@ export default (store) => {
   return (
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} fetchData={fetchFavorites} />
+      <Route path="favorites" component={FavoritesPage} fetchData={fetchFavorites} onEnter={requireAuth} />
       <Route path="login" component={LoginPage} onEnter={redirectAuth} />
     </Route>
   );

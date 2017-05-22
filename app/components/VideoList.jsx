@@ -27,7 +27,7 @@ import classnames from 'classnames';
 import filterStyles from 'css/components/filters';
 import styles from 'css/components/video-results';
 
-class VideoResults extends Component {
+class VideoList extends Component {
 
     constructor() {
         super();
@@ -209,6 +209,8 @@ class VideoResults extends Component {
                     save={this.props.save}
                     unsave={this.props.unsave}
                     isSaved={isSaved}
+                    disableBold={this.props.disableBold}
+                    isLoggedIn={this.props.isLoggedIn}
                 />
             )
         });
@@ -262,9 +264,9 @@ class VideoResults extends Component {
     }
 }
 
-VideoResults.propTypes = {
+VideoList.propTypes = {
     results: PropTypes.object.isRequired,
     query: PropTypes.string
 };
 
-export default VideoResults;
+export default VideoList;

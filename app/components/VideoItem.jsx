@@ -9,35 +9,42 @@ import bold from 'utils/bold';
 
 import styles from 'css/components/video-item';
 
-const VideoItem = ({data, query, onClick, save, unsave, isSaved}) => {
+const VideoItem = ({data, query, onClick, save, unsave, isSaved, hideSave, disableBold, isLoggedIn}) => {
     const {title, videoId, description, thumbnailUrl, publishedAt} = data;
+
+    const renderSave = () => {
+      return (
+          <div className="col-xs-2">
+            <Save
+                data={data}
+                save={save}
+                unsave={unsave}
+                isSaved={isSaved}
+            />
+          </div>
+      )
+    };
 
     return (
         <div className={styles.item}>
             <Row onClick={onClick(videoId)}>
-                <div className="col-xs-3">
+                <Col xs={3}>
                     <img className={styles.thumbnail}
                          src={thumbnailUrl}
                     />
-                </div>
-                <div className="col-xs-7">
+                </Col>
+                <Col xs={hideSave ? 9 : 7}>
                     <div className={styles.title}>
-                       <a dangerouslySetInnerHTML={{__html: bold(query, title)}} />
+                       <a dangerouslySetInnerHTML={{__html: disableBold ? title : bold(query, title)}} />
                     </div>
                     <div className={styles.publishedAt}
                          dangerouslySetInnerHTML={{__html: moment(publishedAt).format('M/D/YYYY')}}>
                     </div>
                     <div className={styles.description}
-                         dangerouslySetInnerHTML={{__html: bold(query, description)}}>
+                         dangerouslySetInnerHTML={{__html: disableBold ? description : bold(query, description)}}>
                     </div>
-                </div>
-                <div className="col-xs-2">
-                  <Save
-                      data={data}
-                      save={save}
-                      unsave={unsave}
-                      isSaved={isSaved}/>
-                </div>
+                </Col>
+                {!hideSave && isLoggedIn && renderSave()}
             </Row>
         </div>
     );
@@ -49,7 +56,10 @@ VideoItem.propTypes = {
     save: PropTypes.func,
     unsave: PropTypes.func,
     query: PropTypes.string,
-    isSaved: PropTypes.bool
+    isSaved: PropTypes.bool,
+    hideSave: PropTypes.bool,
+    disableBold: PropTypes.bool,
+    isLoggedIn: PropTypes.bool
 };
 
 VideoItem.defaultProps = {

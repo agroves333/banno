@@ -21,10 +21,16 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
     ${headAssets.link.toString()}
     ${staticAssets.createTrackingScript()}
   </head>
-  <body>
+  <body style="visibility: hidden">
     <div id="app">${componentHTML}</div>
     <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
     ${staticAssets.createAppScript()}
+    <script>
+      // make body visible after DOM load to prevent FOUC
+      (function() {
+         document.body.style.visibility = "visible";
+      })();
+    </script>
   </body>
 </html>`;
 };

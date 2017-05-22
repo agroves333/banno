@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classNames from 'classnames/bind';
 import SearchContainer from '../containers/SearchContainer';
-import ResultsContainer from '../containers/ResultsContainer';
+import VideoListContainer from '../containers/VideoListContainer';
 
 // Styles
 import styles from '../css/components/home';
@@ -14,7 +14,7 @@ const Home = () => {
               <div className="row">
                   <div className="col-xs-12">
                     <SearchContainer />
-                    <ResultsContainer />
+                    <VideoListContainer />
                   </div>
               </div>
           </div>

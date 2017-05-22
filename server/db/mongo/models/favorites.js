@@ -1,6 +1,5 @@
 /**
  * Schema Definitions
- *
  */
 import mongoose from 'mongoose';
 
@@ -11,7 +10,7 @@ const FavoriteSchema = new mongoose.Schema({
   publishedAt: Date,
   description: String,
   thumbnailUrl: String,
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
 });
 
 

@@ -27,7 +27,7 @@ function createFavoriteFailure(data) {
 }
 
 export function save(data) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
 
     const id = data.videoId;
 
@@ -39,8 +39,8 @@ export function save(data) {
           return dispatch(createFavoriteSuccess());
         }
       })
-      .catch(() => {
-        return dispatch(createFavoriteFailure({ id, error: 'Oops! Something went wrong and we couldn\'t save your video'}));
+      .catch(err => {
+        return dispatch(createFavoriteFailure({ id, error: err + ' Oops! Something went wrong and we couldn\'t save your video'}));
       });
   };
 }
