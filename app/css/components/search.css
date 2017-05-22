@@ -1,5 +1,5 @@
 .search {
-    margin-top: 20px;
+    margin: 20px 0 50px 0;
 
     & input {
         border-top-left-radius: 5px;

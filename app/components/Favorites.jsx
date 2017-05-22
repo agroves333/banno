@@ -69,29 +69,37 @@ class Favorites extends Component {
     )
   }
 
-  renderResults() {
+  renderEmtpy() {
+    return (
+        <div className="well">
+            <h1 className="text-center">No Saved Videos</h1>
+        </div>
+    )
+  }
 
-    
-    return this.props.favorites && this.props.favorites.map((data, key) => {
+  renderFavorites() {
+    return this.props.favorites && this.props.favorites.length ? this.props.favorites.map((data, key) => {
       
       return (
           <VideoItem key={'video-'+key}
                      data={data}
                      onClick={() => this.handleOpenVideoModal.bind(this, data)}
+                     unsave={this.props.unsave}
                      hideSave
                      disableBold
+                     isFavorite
           />
       )
-    });
+    }) : this.renderEmtpy();
   }
 
   render() {
 
     return (
-        <div className="results">
+        <div className={styles.favorites}>
           <Row>
             <Col xs={12}>
-                <div className="resultsList">{this.renderResults()}</div>
+                <div className="resultsList">{this.renderFavorites()}</div>
             </Col>
           </Row>
           {this.renderVideoModal()}

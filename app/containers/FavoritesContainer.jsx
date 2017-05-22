@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import Favorites from 'components/Favorites';
+import {unsave} from 'actions/save';
 
 const mapStateToProps = (state) => {
     return {
@@ -7,4 +8,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(Favorites);
+export default connect(mapStateToProps, {unsave})(Favorites);

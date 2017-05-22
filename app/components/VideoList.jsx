@@ -110,7 +110,6 @@ class VideoList extends Component {
         
         return (
             <div className={filterStyles.filters}>
-                <hr/>
                 <strong>Sort</strong>
                 <Nav stacked
                      activeKey={this.state.activeSort}>
@@ -182,19 +181,23 @@ class VideoList extends Component {
         );
     }
 
+    renderEmtpy() {
+      return (
+          <div className="well">
+            <h1 className="text-center">No results.</h1>
+          </div>
+      )
+    }
+
     renderResults() {
 
         const items = get(this.props, 'results.items', []);
-
-        if (has(this.props, 'results.items') && this.props.results.items.length === 0) {
-          return <NoResults query={this.props.query} />
-        }
 
         const favoriteIds = this.props.favorites && this.props.favorites.map(favorite => {
             return favorite.videoId;
         });
       
-        return items.map((data, key) => {
+        return items && items.length ? items.map((data, key) => {
             let isSaved = false;
             favoriteIds && favoriteIds.forEach(favoriteId => {
                 if (data.videoId === favoriteId) {
@@ -213,7 +216,9 @@ class VideoList extends Component {
                     isLoggedIn={this.props.isLoggedIn}
                 />
             )
-        });
+        }) : (
+            this.renderEmtpy()
+        );
     }
 
     renderLoader() {
