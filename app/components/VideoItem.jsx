@@ -13,14 +13,22 @@ import styles from 'css/components/video-item';
 const VideoItem = ({data, query, onClick, save, unsave, isSaved, hideSave, disableBold, isLoggedIn, isFavorite}) => {
     const {title, videoId, description, thumbnailUrl, publishedAt} = data;
 
+    const handleSaveClick = event => {
+        event.stopPropagation();
+        isSaved ? unsave(videoId) : save(data);
+    };
+
+    const handleRemoveClick = event => {
+        event.stopPropagation();
+        unsave(videoId);
+    };
+
     const renderSave = () => {
       return (
           <div className="col-xs-2">
             <Save
-                data={data}
-                save={save}
-                unsave={unsave}
                 isSaved={isSaved}
+                onClick={handleSaveClick}
             />
           </div>
       )
@@ -29,10 +37,7 @@ const VideoItem = ({data, query, onClick, save, unsave, isSaved, hideSave, disab
     const renderRemove = () => {
       return (
           <div className="col-xs-2">
-            <Remove
-                data={data}
-                remove={unsave}
-            />
+            <Remove onClick={handleRemoveClick} />
           </div>
       )
     };
@@ -45,7 +50,7 @@ const VideoItem = ({data, query, onClick, save, unsave, isSaved, hideSave, disab
                          src={thumbnailUrl}
                     />
                 </Col>
-                <Col xs={hideSave && !isFavorite ? 9 : 7}>
+                <Col xs={hideSave ? 9 : 7}>
                     <div className={styles.title}>
                        <a dangerouslySetInnerHTML={{__html: disableBold ? title : bold(query, title)}} />
                     </div>
@@ -64,7 +69,7 @@ const VideoItem = ({data, query, onClick, save, unsave, isSaved, hideSave, disab
 };
 
 VideoItem.propTypes = {
-    data: PropTypes.object.isRequired,
+    data: PropTypes.object,
     onClick: PropTypes.func,
     save: PropTypes.func,
     unsave: PropTypes.func,
@@ -78,6 +83,7 @@ VideoItem.propTypes = {
 
 VideoItem.defaultProps = {
     onClick: () => {},
+    disableBold: false
 };
 
 export default VideoItem;

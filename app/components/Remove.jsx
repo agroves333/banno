@@ -8,24 +8,20 @@ import styles from '../css/components/remove';
 
 const cx = classNames.bind(styles);
 
-const Remove = ({data, remove}) => {
-
-  const handleClick = (event) => {
-    event.stopPropagation();
-    remove(data.videoId);
-  };
-
+const Remove = ({data, remove, onClick}) => {
+  
   return (
       <Glyphicon
-          onClick={handleClick}
+          onClick={onClick}
           className={cx('remove')}
-          glyph={'remove'} />
+          glyph="remove" />
   );
 };
 
 Remove.propTypes = {
   remove: PropTypes.func,
-  data: PropTypes.object
+  data: PropTypes.object,
+  onClick: PropTypes.func
 };
 
 export default Remove;

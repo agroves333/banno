@@ -10,7 +10,6 @@ import Modal from 'components/Modal';
 
 // Utils
 import {get, has} from 'lodash';
-import classnames from 'classnames';
 
 // Styles
 import styles from 'css/components/favorites';
@@ -78,16 +77,17 @@ class Favorites extends Component {
   }
 
   renderFavorites() {
-    return this.props.favorites && this.props.favorites.length ? this.props.favorites.map((data, key) => {
-      
+    return this.props.favorites && this.props.favorites.length ? this.props.favorites.map((item, key) => {
+
       return (
-          <VideoItem key={'video-'+key}
-                     data={data}
-                     onClick={() => this.handleOpenVideoModal.bind(this, data)}
-                     unsave={this.props.unsave}
-                     hideSave
-                     disableBold
-                     isFavorite
+          <VideoItem
+            key={'video-' + key}
+            data={item}
+            onClick={() => this.handleOpenVideoModal.bind(this, item)}
+            unsave={this.props.unsave}
+            hideSave
+            disableBold
+            isFavorite
           />
       )
     }) : this.renderEmtpy();
@@ -110,6 +110,7 @@ class Favorites extends Component {
 
 Favorites.propTypes = {
   favorites: PropTypes.array.isRequired,
+  unsave: PropTypes.func
 };
 
 export default Favorites;

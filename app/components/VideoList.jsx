@@ -212,22 +212,22 @@ class VideoList extends Component {
             return favorite.videoId;
         });
       
-        return items && items.length ? items.map((data, key) => {
+        return items && items.length ? items.map((item, key) => {
             let isSaved = false;
             favoriteIds && favoriteIds.forEach(favoriteId => {
-                if (data.videoId === favoriteId) {
+                if (item.videoId === favoriteId) {
                   isSaved = true;
                 }
             });
             return (
-                <VideoItem key={'video-'+key}
-                    data={data}
-                    onClick={() => this.handleOpenVideoModal.bind(this, data)}
+                <VideoItem
+                    key={'video-'+key}
+                    data={item}
+                    onClick={() => this.handleOpenVideoModal.bind(this, item)}
                     query={this.props.query}
                     save={this.props.save}
                     unsave={this.props.unsave}
                     isSaved={isSaved}
-                    disableBold={this.props.disableBold}
                     isLoggedIn={this.props.isLoggedIn}
                 />
             )
@@ -286,7 +286,11 @@ class VideoList extends Component {
 
 VideoList.propTypes = {
     results: PropTypes.object.isRequired,
-    query: PropTypes.string
+    query: PropTypes.string,
+    save: PropTypes.func,
+    unsave: PropTypes.func,
+    disableBold: PropTypes.bool,
+    isLoggedIn: PropTypes.bool
 };
 
 export default VideoList;

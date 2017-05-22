@@ -8,22 +8,18 @@ import styles from '../css/components/save';
 
 const cx = classNames.bind(styles);
 
-const Save = ({data, isSaved, save, unsave}) => {
-
-  const handleClick = (event) => {
-    event.stopPropagation();
-    isSaved ? unsave(data.videoId) : save(data)
-  };
+const Save = ({isSaved, save, unsave, onClick}) => {
 
   return (
       <Glyphicon
-          onClick={handleClick}
+          onClick={onClick}
           className={cx('save')}
           glyph={isSaved ? 'star' : 'star-empty'} />
   );
 };
 
 Save.propTypes = {
+  onClick: PropTypes.func,
   isSaved: PropTypes.bool,
   save: PropTypes.func,
   unsaved: PropTypes.func,

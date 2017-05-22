@@ -27,7 +27,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
 
   const createCssLoaders = embedCssInBundle => ([
     {
-      loader: 'css-loader',
+      loader: embedCssInBundle ? 'css-loader' : 'css-loader/locals',
       options: {
         localIndentName,
         sourceMap: true,
