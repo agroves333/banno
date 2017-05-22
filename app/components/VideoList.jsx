@@ -13,8 +13,8 @@ import {
 import VideoItem from 'components/VideoItem';
 import Pager from 'components/Pager';
 import Modal from 'components/Modal';
-import NoResults from 'components/NoResults';
 import CommentsContainer from 'containers/CommentsContainer';
+import StatsContainer from 'containers/StatsContainer';
 
 // Actions
 import {search} from 'actions/search';
@@ -36,6 +36,7 @@ class VideoList extends Component {
             videoUrl: '',
             videoTitle: '',
             videoId: '',
+            channel: {},
             showVideoModal: false,
             activeSort: 'relevance',
             activeDuration: 'any',
@@ -50,6 +51,10 @@ class VideoList extends Component {
         return `//www.youtube.com/embed/${id}?&autoplay=1&rel=0`;
     }
 
+    getYoutubeChannelUrl(id) {
+        return `https://www.youtube.com/channel/${id}`;
+    }
+
     handleCloseVideoModal() {
         this.setState({showVideoModal: false});
     }
@@ -59,7 +64,8 @@ class VideoList extends Component {
             showVideoModal: true,
             videoTitle: data.title,
             videoUrl: this.getYoutubeUrl(data.videoId),
-            videoId: data.videoId
+            videoId: data.videoId,
+            channel: data.channel
         });
     }
 
@@ -80,6 +86,7 @@ class VideoList extends Component {
     }
 
     renderVideoModal() {
+
         return (
             <Modal
                 show={this.state.showVideoModal}
@@ -87,8 +94,15 @@ class VideoList extends Component {
                 <Row>
                     <Col xs={12}
                          sm={8}
-                         smOffset={2}
-                         >
+                         smOffset={2}>
+                        <h3>
+                          <a
+                              href={this.getYoutubeChannelUrl(this.state.channel.id)}
+                              target="_blank">
+                            {this.state.channel.title}
+                          </a>
+                        </h3>
+
                         <div className="embed-responsive embed-responsive-16by9">
                             <iframe
                                 className="embed-responsive-item"
@@ -98,7 +112,8 @@ class VideoList extends Component {
                             </iframe>
                         </div>
                         <div>
-                          <CommentsContainer videoId={this.state.videoId}/>
+                            <StatsContainer videoId={this.state.videoId}/>
+                            <CommentsContainer videoId={this.state.videoId}/>
                         </div>
                     </Col>
                 </Row>

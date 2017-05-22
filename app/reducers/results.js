@@ -10,12 +10,7 @@ const results = (state = {}, action) => {
     case RECEIVE_RESULTS:
       return {
         ...state,
-        items: action.data.items,
-        totalResults: action.data.totalResults,
-        searchTime: action.data.searchTime,
-        page: action.data.page,
-        prev: action.data.prev,
-        next: action.data.next,
+        ...action.data,
         isLoading: false
       };
     case SEARCH_ERROR:

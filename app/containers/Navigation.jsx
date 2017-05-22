@@ -15,11 +15,11 @@ const Navigation = ({user, logOut}) => {
             to="/"
             className={cx('item', 'logo')}
             activeClassName={cx('active')}>BannoTube</Link>
-        { user.authenticated && <Link className={cx('item')} activeClassName={cx('active')} to="/favorites">Favorites</Link>}
         <Link
             to="/"
             className={cx('item')}
             activeClassName={cx('active')}>Search</Link>
+        { user.authenticated && <Link className={cx('item')} activeClassName={cx('active')} to="/favorites">Favorites</Link>}
         { user.authenticated ? (
             <Link
                 onClick={logOut}

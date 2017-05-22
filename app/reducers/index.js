@@ -6,6 +6,7 @@ import message from '../reducers/message';
 import results from '../reducers/results';
 import suggestions from '../reducers/suggestions';
 import comments from '../reducers/comments';
+import stats from '../reducers/stats';
 import query from '../reducers/query';
 import * as types from '../types';
 
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   results,
   suggestions,
   comments,
+  stats,
   message,
   query,
   routing

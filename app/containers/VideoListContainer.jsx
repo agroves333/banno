@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
         results: state.results,
         query: state.query,
         favorites: state.favorites,
+        channel: state.channel,
         isLoggedIn: state.user && state.user.authenticated ? true : false
     }
 };

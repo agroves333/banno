@@ -18,7 +18,7 @@ const Remove = ({data, remove}) => {
   return (
       <Glyphicon
           onClick={handleClick}
-          className={cx('save')}
+          className={cx('remove')}
           glyph={'remove'} />
   );
 };

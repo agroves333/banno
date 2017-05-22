@@ -45,7 +45,7 @@ const VideoItem = ({data, query, onClick, save, unsave, isSaved, hideSave, disab
                          src={thumbnailUrl}
                     />
                 </Col>
-                <Col xs={hideSave ? 9 : 7}>
+                <Col xs={hideSave && !isFavorite ? 9 : 7}>
                     <div className={styles.title}>
                        <a dangerouslySetInnerHTML={{__html: disableBold ? title : bold(query, title)}} />
                     </div>
