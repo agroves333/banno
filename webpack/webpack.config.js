@@ -21,7 +21,7 @@ module.exports = (env = {}) => {
   const node = { __dirname: true, __filename: true };
 
   const prodServerRender = {
-    devtool: 'source-map',
+    devtool: 'eval',
     context: PATHS.app,
     entry: { server: '../server/index' },
     target: 'node',
@@ -39,7 +39,7 @@ module.exports = (env = {}) => {
   };
 
   const prodBrowserRender = {
-    devtool: 'cheap-module-source-map',
+    devtool: 'eval',
     context: PATHS.app,
     entry: { app: ['./client'] },
     node,
