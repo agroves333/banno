@@ -1,5 +1,5 @@
 export default {
-    googleApiKey : 'AIzaSyBAD7iQPsYa2fJMPYZJUi5Sk8OYxhlhda8',
+    googleApiKey : 'AIzaSyBEcq_pRHmXyy_XUxNTA404RxYprXPnH5k',
     youTubeVideosListBaseURL : 'https://www.googleapis.com/youtube/v3/videos',
     youTubeCommentsBaseURL : 'https://www.googleapis.com/youtube/v3/commentThreads',
     youTubeSearchBaseURL : 'https://www.googleapis.com/youtube/v3/search',
