@@ -52,4 +52,6 @@ initRoutes(app);
  */
 app.get('*', renderMiddleware);
 
-app.listen(app.get('port'));
+app.listen(app.get('port'), function() {
+  console.log('Server running on port ' + app.get('port'));
+});
