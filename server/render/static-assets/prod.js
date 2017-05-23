@@ -13,5 +13,7 @@ ga('send', 'pageview');
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>`;
 
-export { createAppScript, createTrackingScript };
+const createStylesheets = () => `<link rel="stylesheet" href="/assets/${assets['app.css']}" />`;
+
+export { createAppScript, createTrackingScript, createStylesheets };
 

@@ -19,6 +19,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
     ${headAssets.title.toString()}
     ${headAssets.meta.toString()}
     ${headAssets.link.toString()}
+    ${staticAssets.createStylesheets()}
     ${staticAssets.createTrackingScript()}
   </head>
   <body style="visibility: hidden">
