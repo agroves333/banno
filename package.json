@@ -5,7 +5,6 @@
   "repository": "https://github.com/agroves333/banno",
   "main": "index.js",
   "scripts": {
-    "sequelize": "node_modules/.bin/sequelize",
     "lint": "eslint --ext .js,.jsx app server",
     "lint:fix": "eslint --ext .js,.jsx app server --fix",
     "clean": "rimraf public && rimraf compiled",
@@ -13,9 +12,7 @@
     "dev": "cross-env NODE_ENV=development nodemon",
     "build:dev": "cross-env NODE_ENV=development npm run webpack -- --env.server",
     "build": "npm run clean && cross-env NODE_ENV=production npm run webpack -- --env.browser && NODE_ENV=production npm run webpack -- --env.server",
-    "webpack": "webpack --colors --display-error-details --config ./webpack/webpack.config.js",
-    "test": "mocha ./app/tests/setup.js --compilers css:./app/tests/compilers/css ./app/**/*-test.js",
-    "test:watch": "mocha ./app/tests/setup.js --watch --compilers css:./app/tests/compilers/css ./app/**/*-test.js"
+    "webpack": "webpack --colors --display-error-details --config ./webpack/webpack.config.js"
   },
   "author": "Adam Groves",
   "license": "MIT",
@@ -28,14 +25,10 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "expect": "^1.15.2",
-    "jsdom": "^9.12.0",
-    "mocha": "^3.2.0",
     "nodemon": "^1.10.2",
     "react-test-renderer": "^15.5.3",
     "react-transform-catch-errors": "^1.0.2",
-    "redux-mock-store": "1.2.2",
-    "sinon": "^2.1.0"
+    "redux-mock-store": "1.2.2"
   },
   "dependencies": {
     "autoprefixer": "^6.7.7",
@@ -97,8 +90,6 @@
     "redux-thunk": "^2.0.1",
     "request": "^2.81.0",
     "rimraf": "^2.6.1",
-    "sequelize": "^3.30.4",
-    "sequelize-cli": "^2.7.0",
     "spark-md5": "^3.0.0",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
